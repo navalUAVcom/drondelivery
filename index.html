@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DronDelivery.eu | EU Drone Rules PDFs & Future Logistics</title>
+  <meta name="description" content="DronDelivery.eu - Delivering drone aviation information, EU legislation manuals, and future unmanned logistics.">
+  
+  <!-- Google Fonts pro čistý moderní vzhled -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #f9f9f9; /* Světlé pozadí kvůli logu */
+      --card-bg: #ffffff;
+      --accent-color: #d19a3a; /* Barva z loga (zlatavá/hořčicová) */
+      --text-main: #1a1a1a;
+      --text-muted: #5a5a5a;
+      --border-color: #e0e0e0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    /* Jazykový panel */
+    .lang-switcher {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      background: var(--card-bg);
+      padding: 6px 12px;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 10;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 15px;
+      transition: all 0.2s;
+    }
+
+    .lang-btn:hover, .lang-btn.active {
+      color: #000;
+      background: rgba(209, 154, 58, 0.2); /* Jemné podbarvení barvou loga */
+    }
+
+    /* Hlavní kontejner */
+    main {
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* Sekce s logem */
+    .logo-area {
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-area img {
+      max-width: 100%;
+      height: auto;
+      max-height: 140px; 
+      display: block;
+      /* Odstranil jsem drop-shadow, aby vynikla bílá čistota loga */
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* Jazykové sekce obsahu */
+    .lang-section {
+      display: none;
+    }
+
+    .lang-section.active {
+      display: block;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Prodejní karty a tlačítka na Gumroad */
+    .cta-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .cta-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .cta-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .gumroad-btn {
+      display: inline-block;
+      background: var(--accent-color);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    }
+
+    .gumroad-btn:hover {
+      transform: scale(1.02);
+      background-color: #b5832e; /* Tmavší odstín pro hover */
+      box-shadow: 0 0 15px rgba(209, 154, 58, 0.4);
+    }
+
+    /* Patička */
+    footer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Výběr jazyků -->
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('cs')">CZ</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('pl')">PL</button>
+    <button class="lang-btn" onclick="setLang('sk')">SK</button>
+    <button class="lang-btn" onclick="setLang('it')">IT</button>
+  </div>
+
+  <main>
+    <!-- Brand / Logo z Webnode CDN -->
+    <div class="logo-area">
+      <!-- POZOR: Tuto URL případně nahraď URL adresou čistého bílého loga, pokud se ta předchozí (tmavá) neshoduje s tím, co jsi poslal na obrázku -->
+      <img src="https://aef2f51e27.clvaw-cdnwnd.com/fbac33f21565f8559b032b5821bc39d2/200000736-9fc3c9fc3d/Copilot_20260129_190609-8.webp?ph=aef2f51e27" alt="DronDelivery.eu Logo">
+    </div>
+    
+    <!-- CZ OBSAH -->
+    <div id="lang-cs" class="lang-section active">
+      <p class="tagline">Doručování kritických informací pro dronaře. A v budoucnu nejen jich... 🚀</p>
+      <div class="cta-card">
+        <h2>EU Drone Rules PDFs</h2>
+        <p>Připravte se na legální a bezpečné létání v EU. Stáhněte si naše kompletní PDF checklisty a legislativní průvodce pro Itálii, Německo, Rakousko a ČR.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Koupit manuály na Gumroad</a>
+      </div>
+    </div>
+
+    <!-- EN OBSAH -->
+    <div id="lang-en" class="lang-section">
+      <p class="tagline">Delivering critical information for drone pilots. And more than just that in the future... 🚀</p>
+      <div class="cta-card">
+        <h2>EU Drone Rules PDFs</h2>
+        <p>Get ready for legal and safe flying within the EU. Download our comprehensive PDF checklists and drone regulation guides for Italy, Germany, Austria, and the Czech Republic.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Get Manuals on Gumroad</a>
+      </div>
+    </div>
+
+    <!-- DE OBSAH -->
+    <div id="lang-de" class="lang-section">
+      <p class="tagline">Bereitstellung wichtiger Informationen für Drohnenpiloten. Und in Zukunft noch viel mehr... 🚀</p>
+      <div class="cta-card">
+        <h2>EU Drone Rules PDFs</h2>
+        <p>Bereiten Sie sich auf legales und sicheres Fliegen in der EU vor. Laden Sie unsere umfassenden PDF-Checklisten und Drohnen-Leitfäden für Italien, Deutschland, Österreich und Tschechien herunter.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Handbücher auf Gumroad kaufen</a>
+      </div>
+    </div>
+
+    <!-- PL OBSAH -->
+    <div id="lang-pl" class="lang-section">
+      <p class="tagline">Dostarczanie kluczowych informacji dla pilotów dronów. A w przyszłości nie tylko to... 🚀</p>
+      <div class="cta-card">
+        <h2>EU Drone Rules PDFs</h2>
+        <p>Przygotuj się do legalnego i bezpiecznego latania w UE. Pobierz nasze kompletne listy kontrolne PDF i przewodniki po przepisach dla Włoch, Niemiec, Austrii i Czech.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Kup podręczniki na Gumroad</a>
+      </div>
+    </div>
+
+    <!-- SK OBSAH -->
+    <div id="lang-sk" class="lang-section">
+      <p class="tagline">Doručovanie kritických informácií pre drahárov. A v budúcnosti nielen ich... 🚀</p>
+      <div class="cta-card">
+        <h2>EU Drone Rules PDFs</h2>
+        <p>Pripravte sa na legálne a bezpečné lietanie v EÚ. Stiahnite si naše kompletné PDF checklisty a legislatívnych sprievodcov pre Taliansko, Nemecko, Rakúsko a ČR.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Kúpiť manuály na Gumroad</a>
+      </div>
+    </div>
+
+    <!-- IT OBSAH -->
+    <div id="lang-it" class="lang-section">
+      <p class="tagline">Fornire informazioni fondamentali ai piloti di droni. E in futuro non solo questo... 🚀</p>
+      <div class="cta-card">
+        <h2>EU Drone Rules PDFs</h2>
+        <p>Preparati per voli legali e sicuri nell'UE. Scarica le nostre checklist complete in PDF e le guide alle normative sui droni per Italia, Germania, Austria e Repubblica Ceca.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Acquista manuali su Gumroad</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 DronDelivery.eu. Součást ekosystému <a href="https://www.fpvvideo.cz" target="_blank">FPV Video</a>.</p>
+  </footer>
+
+  <!-- JS skript pro detekci a přepínání jazyků -->
+  <script>
+    function setLang(lang) {
+      // Skryje všechny textové sekce
+      document.querySelectorAll('.lang-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      // Deaktivuje aktivní vzhled tlačítek
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Zobrazí vybranou jazykovou sekci
+      const activeSection = document.getElementById('lang-' + lang);
+      if(activeSection) {
+        activeSection.classList.add('active');
+      }
+      
+      // Aktivuje správné tlačítko v menu
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        if(btn.innerText.toLowerCase() === lang.toLowerCase()) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    // Automatická detekce jazyka uživatele při načtení
+    const userLang = navigator.language || navigator.userLanguage;
+    if (userLang.startsWith('sk')) setLang('sk');
+    else if (userLang.startsWith('de')) setLang('de');
+    else if (userLang.startsWith('pl')) setLang('pl');
+    else if (userLang.startsWith('it')) setLang('it');
+    else if (userLang.startsWith('en')) setLang('en');
+    else setLang('cs'); // Výchozí jazyk, pokud se netrefíme do ostatních
+  </script>
+</body>
+</html>
