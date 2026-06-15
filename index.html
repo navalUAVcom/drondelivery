@@ -33,41 +33,63 @@
       padding: 20px;
     }
 
+    /* Jazykový panel */
     .lang-switcher {
       display: flex; gap: 10px; margin: 20px 0; background: var(--card-bg);
       padding: 6px 12px; border-radius: 30px; border: 1px solid var(--border-color);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .lang-btn {
       background: none; border: none; color: var(--text-muted); cursor: pointer;
-      padding: 4px 8px; border-radius: 15px; transition: all 0.2s;
+      padding: 4px 8px; border-radius: 15px; transition: all 0.2s; font-weight: 500;
     }
 
     .lang-btn:hover, .lang-btn.active { color: #000; background: rgba(209, 154, 58, 0.2); }
 
+    /* Hlavní obsah */
     main { text-align: left; max-width: 650px; width: 100%; margin: auto; padding: 20px; }
 
     .logo-area { margin-bottom: 25px; display: flex; justify-content: center; }
-    .logo-area img { max-width: 100%; max-height: 120px; }
+    .logo-area img { max-width: 100%; max-height: 130px; }
 
+    .lang-section { display: none; animation: fadeIn 0.4s ease-in-out; }
+    .lang-section.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Texty */
     .text-content { line-height: 1.6; color: var(--text-main); }
-    .text-content h2 { margin: 25px 0 10px 0; font-size: 1.3rem; }
-    .text-content p { margin-bottom: 15px; }
-    .text-content ul { margin-bottom: 15px; padding-left: 20px; }
-
+    .text-content h1 { font-size: 1.8rem; margin-bottom: 15px; text-align: center; }
+    .text-content h2 { margin: 30px 0 10px 0; font-size: 1.3rem; }
+    .text-content p { margin-bottom: 15px; color: var(--text-muted); }
+    
+    /* CTA Karta s tlačítkem */
     .cta-card {
       background: var(--card-bg); border: 1px solid var(--border-color);
-      padding: 30px; border-radius: 12px; margin-top: 30px; text-align: center;
+      padding: 30px; border-radius: 12px; margin-top: 40px; text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     }
+    .cta-card h2 { margin-top: 0; margin-bottom: 15px; color: #000; }
 
     .gumroad-btn {
       display: inline-block; background: var(--accent-color); color: #ffffff;
       text-decoration: none; font-weight: 700; padding: 14px 28px;
-      border-radius: 8px; margin-top: 15px;
+      border-radius: 8px; margin-top: 15px; transition: transform 0.2s, background-color 0.2s;
+    }
+    .gumroad-btn:hover {
+      transform: scale(1.02); background-color: #b5832e;
     }
 
-    footer { font-size: 0.8rem; color: var(--text-muted); margin: 40px 0; text-align: center; }
-    footer a { color: var(--accent-color); text-decoration: none; }
+    /* Patička */
+    footer { font-size: 0.8rem; color: var(--text-muted); margin: 40px 0; text-align: center; opacity: 0.8;}
+    footer a { color: var(--accent-color); text-decoration: none; font-weight: 500;}
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -75,6 +97,10 @@
   <div class="lang-switcher">
     <button class="lang-btn active" onclick="setLang('cs')">CZ</button>
     <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('pl')">PL</button>
+    <button class="lang-btn" onclick="setLang('sk')">SK</button>
+    <button class="lang-btn" onclick="setLang('it')">IT</button>
   </div>
 
   <main>
@@ -99,7 +125,91 @@
       </div>
     </div>
 
-    <!-- Zde by byly další jazykové sekce -->
+    <div id="lang-en" class="lang-section text-content">
+      <h1>Drone Legislation and Flying Guide</h1>
+      <p>Flying a drone is more accessible than ever, but navigating the rules of individual EU countries is becoming increasingly complex. DronDelivery.eu was created as a clear guide for everyone who wants to fly legally and safely.</p>
+      
+      <h2>Important Disclaimer</h2>
+      <p>The information on this page is not a legal interpretation, a transcript of laws, or an official statement from authorities. The pilot always bears full responsibility for their flight. Consider these texts as an experience-based "cookbook" – a clear guide on what is allowed, what is not, and what to watch out for. This is not an official document, and no legal liability is transferred to us.</p>
+
+      <h2>About the Project</h2>
+      <p>DronDelivery.eu is a project that delivers knowledge. We provide practical PDF guides that explain the rules in plain language, without complex legal jargon. Because we actively process European law ourselves, our <strong>professional production</strong> gains an advantage that we pass on to you.</p>
+
+      <div class="cta-card">
+        <h2>Legislative PDF Guides</h2>
+        <p>Download our comprehensive PDF checklists and guides for the Czech Republic, Austria, Germany, and Italy.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Get Manuals on Gumroad</a>
+      </div>
+    </div>
+
+    <div id="lang-de" class="lang-section text-content">
+      <h1>Leitfaden für Drohnengesetzgebung</h1>
+      <p>Das Fliegen einer Drohne ist heute zugänglicher denn je, aber sich in den Regeln der einzelnen EU-Länder zurechtzufinden, wird immer komplexer. DronDelivery.eu wurde als verständlicher Wegweiser für alle geschaffen, die legal und sicher fliegen wollen.</p>
+      
+      <h2>Wichtiger Hinweis</h2>
+      <p>Die Informationen auf dieser Seite sind keine rechtliche Auslegung, keine Abschrift von Gesetzen und keine offizielle Stellungnahme von Behörden. Der Pilot trägt immer die volle Verantwortung für seinen Flug. Betrachten Sie diese Texte als ein erfahrungsbasiertes "Kochbuch" – eine klare Anleitung, was erlaubt ist, was nicht und worauf zu achten ist. Dies ist kein offizielles Dokument, und es wird keine rechtliche Verantwortung auf uns übertragen.</p>
+
+      <h2>Über das Projekt</h2>
+      <p>DronDelivery.eu ist ein Projekt, das Wissen liefert. Wir bieten praktische PDF-Leitfäden, die die Regeln in verständlicher Sprache ohne komplexes Juristendeutsch erklären. Da wir selbst aktiv europäisches Recht verarbeiten, gewinnt unsere <strong>professionelle Produktion</strong> einen Vorteil, den wir an Sie weitergeben.</p>
+
+      <div class="cta-card">
+        <h2>PDF-Gesetzesleitfäden</h2>
+        <p>Laden Sie unsere umfassenden PDF-Checklisten und Leitfäden für die Tschechische Republik, Österreich, Deutschland und Italien herunter.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Handbücher auf Gumroad kaufen</a>
+      </div>
+    </div>
+
+    <div id="lang-pl" class="lang-section text-content">
+      <h1>Przewodnik po przepisach dronowych</h1>
+      <p>Latanie dronem jest dziś łatwiejsze niż kiedykolwiek, ale poruszanie się po przepisach poszczególnych państw UE staje się coraz bardziej skomplikowane. DronDelivery.eu powstało jako przejrzysty przewodnik dla każdego, kto chce latać legalnie i bezpiecznie.</p>
+      
+      <h2>Ważna uwaga</h2>
+      <p>Informacje na tej stronie nie są interpretacją prawną, transkrypcją przepisów ani oficjalnym oświadczeniem organów. Pilot zawsze ponosi pełną odpowiedzialność za swój lot. Traktuj te teksty jako "książkę kucharską" opartą na doświadczeniu – jasny przewodnik po tym, co wolno, czego nie wolno i na co uważać. Nie jest to oficjalny dokument i nie ponosimy z tego tytułu odpowiedzialności prawnej.</p>
+
+      <h2>O projekcie</h2>
+      <p>DronDelivery.eu to projekt dostarczający wiedzę. Udostępniamy praktyczne przewodniki PDF, w których wyjaśniamy zasady prostym językiem, bez skomplikowanego żargonu prawniczego. Ponieważ sami aktywnie przetwarzamy prawo europejskie, nasza <strong>profesjonalna produkcja</strong> zyskuje przewagę, którą przekazujemy dalej.</p>
+
+      <div class="cta-card">
+        <h2>Przewodniki legislacyjne PDF</h2>
+        <p>Pobierz nasze kompletne listy kontrolne PDF i przewodniki dla Czech, Austrii, Niemiec i Włoch.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Kup podręczniki na Gumroad</a>
+      </div>
+    </div>
+
+    <div id="lang-sk" class="lang-section text-content">
+      <h1>Sprievodca legislatívou a lietaním</h1>
+      <p>Lietanie s dronom je dnes dostupnejšie ako kedykoľvek predtým, ale vyznať sa v pravidlách jednotlivých krajín EÚ je stále zložitejšie. DronDelivery.eu vzniká ako zrozumiteľný rázcestník pre všetkých, ktorí chcú lietať legálne a bezpečne.</p>
+      
+      <h2>Dôležité upozornenie</h2>
+      <p>Informácie na tejto stránke nie sú právnym výkladom, opisom zákonov ani oficiálnym stanoviskom úradov. Pilot vždy nesie plnú zodpovednosť za svoj let. Berte tieto texty ako skúsenosťami podloženú kuchařku – zrozumiteľný návod, čo sa smie, čo sa nesmie a na čo si dať pozor. Nejedná sa o oficiálny dokument a neprenáša sa na nás právna zodpovednosť.</p>
+
+      <h2>O projekte</h2>
+      <p>DronDelivery.eu je projekt, ktorý doručuje znalosti. Poskytujeme praktických PDF sprievodcov, v ktorých vysvetľujeme pravidlá ľudskou rečou, bez paragrafov a zložitej právničiny. Vďaka tomu, že európske právo sami aktívne spracovávame, získava naša <strong>profesionálna produkcia</strong> výhodu, ktorú posúvame ďalej.</p>
+
+      <div class="cta-card">
+        <h2>Legislatívni PDF sprievodcovia</h2>
+        <p>Stiahnite si naše kompletné PDF checklisty a sprievodcov pre ČR, Rakúsko, Nemecko a Taliansko.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Kúpiť manuály na Gumroad</a>
+      </div>
+    </div>
+
+    <div id="lang-it" class="lang-section text-content">
+      <h1>Guida alla legislazione dei droni</h1>
+      <p>Volare con un drone è oggi più accessibile che mai, ma orientarsi nelle regole dei singoli paesi dell'UE è sempre più complesso. DronDelivery.eu nasce come una guida chiara per tutti coloro che vogliono volare in modo legale e sicuro.</p>
+      
+      <h2>Avviso Importante</h2>
+      <p>Le informazioni in questa pagina non costituiscono un'interpretazione legale, una trascrizione delle leggi o una dichiarazione ufficiale delle autorità. Il pilota ha sempre la piena responsabilità del proprio volo. Considera questi testi come un "ricettario" basato sull'esperienza: una guida chiara su cosa è consentito, cosa non lo è e a cosa fare attenzione. Non si tratta di un documento ufficiale e non ci assumiamo alcuna responsabilità legale.</p>
+
+      <h2>Informazioni sul progetto</h2>
+      <p>DronDelivery.eu è un progetto che fornisce conoscenze. Offriamo pratiche guide in PDF in cui spieghiamo le regole con parole semplici, senza complessi termini legali. Poiché elaboriamo attivamente il diritto europeo noi stessi, la nostra <strong>produzione professionale</strong> ottiene un vantaggio che trasmettiamo a te.</p>
+
+      <div class="cta-card">
+        <h2>Guide legislative in PDF</h2>
+        <p>Scarica le nostre checklist complete in PDF e le guide per Repubblica Ceca, Austria, Germania e Italia.</p>
+        <a href="https://drondelivery.gumroad.com" target="_blank" class="gumroad-btn">Acquista manuali su Gumroad</a>
+      </div>
+    </div>
+
   </main>
 
   <footer>
@@ -108,11 +218,33 @@
 
   <script>
     function setLang(lang) {
+      // 1. Skryje všechny jazykové bloky
       document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+      // 2. Odbarví všechna tlačítka
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('lang-' + lang).classList.add('active');
-      event.target.classList.add('active');
+      
+      // 3. Zobrazí správný jazykový blok
+      const targetSection = document.getElementById('lang-' + lang);
+      if(targetSection) targetSection.classList.add('active');
+      
+      // 4. Obarví správné tlačítko
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        let btnLang = btn.innerText.toLowerCase();
+        if (btnLang === 'cz') btnLang = 'cs'; // Srovnání textu CZ s kódem cs
+        if(btnLang === lang.toLowerCase()) {
+          btn.classList.add('active');
+        }
+      });
     }
+
+    // Automatická detekce jazyka podle prohlížeče
+    const userLang = navigator.language || navigator.userLanguage;
+    if (userLang.startsWith('sk')) setLang('sk');
+    else if (userLang.startsWith('de')) setLang('de');
+    else if (userLang.startsWith('pl')) setLang('pl');
+    else if (userLang.startsWith('it')) setLang('it');
+    else if (userLang.startsWith('en')) setLang('en');
+    else setLang('cs'); // Výchozí
   </script>
 </body>
 </html>
